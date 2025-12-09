@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><title>Dashboard - NT SURVEY</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <h2 id="hello">Dashboard</h2>
+        <div class="small" id="emailView"></div>
+      </div>
+      <div><strong>Coins: <span id="coins">0</span></strong></div>
+    </div>
+
+    <h3>Surveys</h3>
+    <div id="surveyList"></div>
+
+    <h3>Your submissions</h3>
+    <div id="submissionList"></div>
+
+    <h3>Withdraw</h3>
+    <div class="small">Minimum withdraw: 500 coins</div>
+    <input id="wd_amount" type="number" placeholder="Coins to withdraw" />
+    <select id="wd_method"><option>bkash</option><option>nagad</option><option>bitcoin</option></select>
+    <input id="wd_number" placeholder="Account (e.g. 01XXXXXXXXX or wallet)" />
+    <button class="btn" onclick="makeWithdraw()">Request Withdraw</button>
+
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button class="btn" onclick="logout()">Logout</button>
+      <a class="btn btn-ghost" href="index.html">Home</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script src="js/config.js"></script>
+<script src="js/user.js"></script>
+</body>
+</html>

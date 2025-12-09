@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"><title>Sign Up - NT SURVEY</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card center">
+      <h2>Create account</h2>
+      <input id="su_username" placeholder="Username" />
+      <input id="su_email" placeholder="Email" />
+      <input id="su_password" type="password" placeholder="Password" />
+      <select id="su_country">
+        <option value="BD">Bangladesh</option>
+        <option value="INT">International</option>
+      </select>
+      <button class="btn" onclick="signup()">Sign Up</button>
+      <p class="small">Minimum withdraw: 500 coins.</p>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+  <script src="js/config.js"></script>
+  <script>
+    async function signup(){
+      const username=document.getElementById('su_username').value.trim();
+      const email=document.getElementById('su_email').value.trim();
+      const password=document.getElementById('su_password').value.trim();
+      const country=document.getElementById('su_country').value;
+      if(!username||!email||!password) return alert('সব ফিল্ড পূরণ করো');
+      try{
+        const cred = await auth.createUserWithEmailAndPassword(email,password);
+        const uid = cred.user.uid;
+        await db.ref('userProfiles/'+uid).set({
+          uid, username, email, country, totalCoins:0, createdAt:Date.now()
+        });
+        alert('Registered. Please login.');
+        location='login.html';
+      }catch(err){ alert(err.message); }
+    }
+  </script>
+</body>
+</html>

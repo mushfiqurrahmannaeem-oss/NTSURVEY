@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"><title>Admin - NT SURVEY</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="card center">
+    <h2>Admin</h2>
+    <input id="ad_email" placeholder="Admin email" />
+    <input id="ad_pass" type="password" placeholder="Password" />
+    <div style="display:flex;gap:8px">
+      <button class="btn" onclick="adminLogin()">Login</button>
+      <a class="btn btn-ghost" href="index.html">Home</a>
+    </div>
+
+    <div id="adminArea" style="display:none;margin-top:12px;text-align:left">
+      <h3>Create Survey</h3>
+      <input id="s_title" placeholder="Survey title" />
+      <input id="s_reward" placeholder="Reward (coins)" type="number" />
+      <select id="s_auto"><option value="true">Auto-credit (no admin approve)</option><option value="false">Requires admin approval</option></select>
+      <input id="s_link" placeholder="External survey link (URL)" />
+      <button class="btn" onclick="createSurvey()">Create Survey</button>
+
+      <h3>Pending Submissions</h3>
+      <div id="pendingSubs"></div>
+
+      <h3>Pending Withdrawals</h3>
+      <div id="pendingWds"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
